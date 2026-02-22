@@ -33,7 +33,7 @@ export default function ExpertsTable({ filtered, total, onEdit, onRemove }) {
               لا توجد سجلات بعد
             </h3>
             <p className="text-xs sm:text-sm text-slate-500 max-w-sm mx-auto px-2">
-              ابدأ بإضافة أول خبير جديد باستخدام النموذج أعلاه
+              ابدأ بإضافة أول سجل جديد باستخدام النموذج أعلاه
             </p>
           </div>
         ) : (
@@ -63,7 +63,7 @@ export default function ExpertsTable({ filtered, total, onEdit, onRemove }) {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center justify-between pt-3 border-t border-slate-100">
                     <div className="text-xs text-slate-600">
                       <div className="flex items-center gap-1">

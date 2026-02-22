@@ -23,10 +23,10 @@ export default function Header({ query, setQuery, total, searchResults = [] }) {
             </div>
             <div>
               <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-0.5 sm:mb-1 drop-shadow-lg">
-                نظام إدارة الجوازات
+                نظام الإدارة
               </h1>
               <p className="text-primary-100 text-xs sm:text-sm md:text-base hidden sm:block">
-                إدارة شاملة لسجلات الجوازات
+                إدارة شاملة للسجلات
               </p>
             </div>
           </div>
@@ -58,7 +58,7 @@ export default function Header({ query, setQuery, total, searchResults = [] }) {
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="ابحث عن خبير..."
+                placeholder="ابحث عن سجل..."
                 className={`w-full pr-10 sm:pr-12 py-2.5 sm:py-3 md:py-4 rounded-lg sm:rounded-xl bg-white backdrop-blur-sm text-slate-900 placeholder-slate-500 outline-none focus:ring-2 sm:focus:ring-4 focus:ring-primary-400/50 focus:bg-white transition-all duration-300 shadow-xl text-sm sm:text-base font-medium ${
                   query ? "pl-10 sm:pl-12 md:pl-14" : "pl-3 sm:pl-4"
                 }`}

@@ -49,19 +49,25 @@ export default function StatsBox({ total, filtered }) {
         <div className="relative">
           <div className="flex items-center justify-between mb-2 sm:mb-3">
             <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-lg">
-              <span className="text-lg sm:text-xl md:text-2xl">{total > 0 ? "✓" : "○"}</span>
+              <span className="text-lg sm:text-xl md:text-2xl">
+                {total > 0 ? "✓" : "○"}
+              </span>
             </div>
-            <div className={`text-[10px] sm:text-xs font-semibold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full ${
-              total > 0 
-                ? "text-emerald-600 bg-emerald-200/50" 
-                : "text-slate-600 bg-slate-200/50"
-            }`}>
+            <div
+              className={`text-[10px] sm:text-xs font-semibold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full ${
+                total > 0
+                  ? "text-emerald-600 bg-emerald-200/50"
+                  : "text-slate-600 bg-slate-200/50"
+              }`}
+            >
               {total > 0 ? "نشط" : "فارغ"}
             </div>
           </div>
-          <div className={`text-xl sm:text-2xl md:text-3xl font-bold mb-0.5 sm:mb-1 ${
-            total > 0 ? "text-emerald-700" : "text-slate-600"
-          }`}>
+          <div
+            className={`text-xl sm:text-2xl md:text-3xl font-bold mb-0.5 sm:mb-1 ${
+              total > 0 ? "text-emerald-700" : "text-slate-600"
+            }`}
+          >
             {total > 0 ? "نشط" : "فارغ"}
           </div>
           <div className="text-xs sm:text-sm font-medium text-emerald-600/80">

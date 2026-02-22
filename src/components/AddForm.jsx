@@ -24,7 +24,7 @@ export default function AddForm({
             <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30">
               <span className="text-base sm:text-lg md:text-xl">➕</span>
             </div>
-            <span>إضافة خبير جديد</span>
+            <span>إضافة سجل جديد</span>
           </h2>
         </div>
 
@@ -33,7 +33,7 @@ export default function AddForm({
           <div className="animate-slide-up space-y-1.5 sm:space-y-2">
             <label className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-semibold text-slate-700">
               <span className="text-base sm:text-lg">👤</span>
-              <span>اسم الخبير</span>
+              <span>الاسم</span>
               <span className="text-xs text-slate-400 font-normal">(اختياري)</span>
             </label>
             <div className="relative">
@@ -41,7 +41,7 @@ export default function AddForm({
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="w-full px-3 sm:px-4 py-2.5 sm:py-3 md:py-3.5 rounded-lg sm:rounded-xl border-2 border-slate-200 bg-slate-50 text-slate-800 placeholder-slate-400 outline-none transition-all duration-200 focus:border-primary-500 focus:bg-white focus:ring-2 sm:focus:ring-4 focus:ring-primary-500/10 text-sm sm:text-base font-medium"
-                placeholder="أدخل اسم الخبير (اختياري) أو اتركه فارغاً..."
+                placeholder="أدخل الاسم (اختياري) أو اتركه فارغاً..."
               />
             </div>
           </div>
@@ -75,7 +75,7 @@ export default function AddForm({
             style={{ color: '#ffffff' }}
           >
             <span className="text-base sm:text-lg">💾</span>
-            <span style={{ color: '#ffffff' }}>حفظ الخبير</span>
+            <span style={{ color: '#ffffff' }}>حفظ السجل</span>
           </button>
 
           {/* Clear All Button */}

@@ -34,7 +34,7 @@ export default function EditModal({
               <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30">
                 <span className="text-base sm:text-lg md:text-xl">✏️</span>
               </div>
-              <span>تعديل بيانات الخبير</span>
+              <span>تعديل البيانات</span>
             </h2>
           </div>
 
@@ -43,7 +43,7 @@ export default function EditModal({
             <div className="space-y-1.5 sm:space-y-2">
               <label className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-semibold text-slate-700">
                 <span className="text-base sm:text-lg">👤</span>
-                <span>اسم الخبير</span>
+                <span>الاسم</span>
                 <span className="text-xs text-slate-400 font-normal">(اختياري)</span>
               </label>
               <input
