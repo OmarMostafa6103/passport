@@ -9,7 +9,7 @@ export default function ExpertsTable({ filtered, total, onEdit, onRemove }) {
               <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center shadow-lg">
                 <span className="text-base sm:text-lg md:text-xl">📊</span>
               </div>
-              <span>قائمة الخبراء</span>
+              <span>القائمة</span>
             </h2>
             <div className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg sm:rounded-xl bg-primary-50 border border-primary-200">
               <span className="text-xs sm:text-sm font-semibold text-primary-700">
@@ -30,7 +30,7 @@ export default function ExpertsTable({ filtered, total, onEdit, onRemove }) {
               <span className="text-3xl sm:text-4xl">📭</span>
             </div>
             <h3 className="text-lg sm:text-xl font-semibold text-slate-700 mb-1 sm:mb-2">
-              لا توجد خبراء بعد
+              لا توجد سجلات بعد
             </h3>
             <p className="text-xs sm:text-sm text-slate-500 max-w-sm mx-auto px-2">
               ابدأ بإضافة أول خبير جديد باستخدام النموذج أعلاه

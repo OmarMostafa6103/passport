@@ -17,7 +17,7 @@ export default function StatsBox({ total, filtered }) {
             {total}
           </div>
           <div className="text-xs sm:text-sm font-medium text-blue-600/80">
-            إجمالي الخبراء
+            الإجمالي
           </div>
         </div>
       </div>

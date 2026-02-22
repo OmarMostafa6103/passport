@@ -1,6 +1,6 @@
-export default function Header({ query, setQuery, total }) {
+export default function Header({ query, setQuery, total, searchResults = [] }) {
   return (
-    <header className="relative overflow-hidden bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 shadow-2xl">
+    <header className="relative overflow-visible bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 shadow-2xl">
       {/* Decorative Background Elements */}
       <div
         className="absolute inset-0 opacity-20"
@@ -23,10 +23,10 @@ export default function Header({ query, setQuery, total }) {
             </div>
             <div>
               <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-0.5 sm:mb-1 drop-shadow-lg">
-                نظام إدارة الخبراء
+                نظام إدارة الجوازات
               </h1>
               <p className="text-primary-100 text-xs sm:text-sm md:text-base hidden sm:block">
-                إدارة شاملة لسجلات الخبراء والجوازات
+                إدارة شاملة لسجلات الجوازات
               </p>
             </div>
           </div>
@@ -37,7 +37,7 @@ export default function Header({ query, setQuery, total }) {
             </div>
             <div>
               <div className="text-[10px] sm:text-xs text-primary-100 font-medium">
-                إجمالي الخبراء
+                الإجمالي
               </div>
               <div className="text-lg sm:text-xl md:text-2xl font-bold text-white">
                 {total}
@@ -51,7 +51,7 @@ export default function Header({ query, setQuery, total }) {
           <div className="absolute inset-0 bg-white/10 rounded-xl sm:rounded-2xl blur-xl"></div>
           <div className="relative flex items-center gap-2 sm:gap-3">
             <div className="flex-1 relative">
-              <div className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-primary-300 text-base sm:text-lg md:text-xl pointer-events-none">
+              <div className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-primary-300 text-base sm:text-lg md:text-xl pointer-events-none z-10">
                 🔍
               </div>
               <input
@@ -59,16 +59,63 @@ export default function Header({ query, setQuery, total }) {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="ابحث عن خبير..."
-                className="w-full pr-10 sm:pr-12 pl-3 sm:pl-4 py-2.5 sm:py-3 md:py-4 rounded-lg sm:rounded-xl bg-white/95 backdrop-blur-sm text-slate-800 placeholder-slate-400 outline-none focus:ring-2 sm:focus:ring-4 focus:ring-white/50 focus:bg-white transition-all duration-300 shadow-xl text-sm sm:text-base font-medium"
+                className={`w-full pr-10 sm:pr-12 py-2.5 sm:py-3 md:py-4 rounded-lg sm:rounded-xl bg-white backdrop-blur-sm text-slate-900 placeholder-slate-500 outline-none focus:ring-2 sm:focus:ring-4 focus:ring-primary-400/50 focus:bg-white transition-all duration-300 shadow-xl text-sm sm:text-base font-medium ${
+                  query ? "pl-10 sm:pl-12 md:pl-14" : "pl-3 sm:pl-4"
+                }`}
+                style={{ color: "#0f172a" }}
               />
               {query && (
                 <button
                   onClick={() => setQuery("")}
-                  className="absolute left-2 sm:left-3 md:left-4 top-1/2 -translate-y-1/2 w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-lg bg-slate-200 hover:bg-slate-300 text-slate-600 hover:text-slate-800 transition-all duration-200 active:scale-95"
+                  className="absolute left-2 sm:left-3 md:left-4 top-1/2 -translate-y-1/2 w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-lg bg-slate-200 hover:bg-slate-300 text-slate-600 hover:text-slate-800 transition-all duration-200 active:scale-95 z-10"
                   aria-label="مسح البحث"
                 >
                   <span className="text-xs sm:text-sm font-bold">✕</span>
                 </button>
+              )}
+
+              {/* Search Results Dropdown */}
+              {query && searchResults.length > 0 && (
+                <div className="absolute top-full mt-2 left-0 right-0 bg-white rounded-xl shadow-2xl border border-slate-200 max-h-80 overflow-y-auto z-50">
+                  <div className="p-2">
+                    <div className="text-xs text-slate-500 px-3 py-2 font-semibold border-b border-slate-100">
+                      نتائج البحث ({searchResults.length})
+                    </div>
+                    {searchResults.map((result) => (
+                      <div
+                        key={result.id}
+                        className="p-3 hover:bg-blue-50 rounded-lg transition-colors cursor-pointer border-b border-slate-50 last:border-b-0"
+                        onClick={() => {
+                          // يمكن إضافة وظيفة للانتقال للسجل
+                          setQuery(result.name);
+                        }}
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-100 to-primary-200 flex items-center justify-center text-primary-700 font-bold shadow-sm flex-shrink-0">
+                            {result.name.charAt(0).toUpperCase()}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="font-semibold text-slate-900 text-sm truncate">
+                              {result.name}
+                            </div>
+                            <div className="text-xs text-slate-600 mt-0.5 font-mono">
+                              {result.passport}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {query && searchResults.length === 0 && (
+                <div className="absolute top-full mt-2 left-0 right-0 bg-white rounded-xl shadow-2xl border border-slate-200 z-50">
+                  <div className="p-4 text-center">
+                    <div className="text-3xl mb-2">🔍</div>
+                    <p className="text-sm text-slate-600">لا توجد نتائج</p>
+                  </div>
+                </div>
               )}
             </div>
           </div>

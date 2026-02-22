@@ -44,12 +44,13 @@ export default function EditModal({
               <label className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-semibold text-slate-700">
                 <span className="text-base sm:text-lg">👤</span>
                 <span>اسم الخبير</span>
+                <span className="text-xs text-slate-400 font-normal">(اختياري)</span>
               </label>
               <input
                 value={editName}
                 onChange={(e) => setEditName(e.target.value)}
                 className="w-full px-3 sm:px-4 py-2.5 sm:py-3 md:py-3.5 rounded-lg sm:rounded-xl border-2 border-slate-200 bg-slate-50 text-slate-800 placeholder-slate-400 outline-none transition-all duration-200 focus:border-primary-500 focus:bg-white focus:ring-2 sm:focus:ring-4 focus:ring-primary-500/10 text-sm sm:text-base font-medium"
-                placeholder="الاسم الجديد..."
+                placeholder="أدخل الاسم (اختياري) أو اتركه فارغاً..."
                 autoFocus
               />
             </div>

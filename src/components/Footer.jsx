@@ -32,7 +32,7 @@ export default function Footer() {
         </div>
         
         <p className="text-[10px] sm:text-xs text-slate-500">
-          © {new Date().getFullYear()} نظام إدارة الخبراء - جميع الحقوق محفوظة
+          © {new Date().getFullYear()} نظام إدارة الجوازات - جميع الحقوق محفوظة
         </p>
       </div>
     </footer>

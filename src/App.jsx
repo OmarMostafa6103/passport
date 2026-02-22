@@ -47,8 +47,24 @@ export default function App() {
   const filtered = useMemo(() => {
     const q = normalize(query);
     if (!q) return records;
-    return records.filter((r) => {
+    const results = records.filter((r) => {
       return normalize(r.name).includes(q) || normalize(r.passport).includes(q);
+    });
+    // ترتيب النتائج: الأسماء التي تبدأ بالبحث أولاً، ثم التي تحتوي على البحث
+    return results.sort((a, b) => {
+      const aName = normalize(a.name);
+      const bName = normalize(b.name);
+      const aPassport = normalize(a.passport);
+      const bPassport = normalize(b.passport);
+      
+      const aStartsWith = aName.startsWith(q) || aPassport.startsWith(q);
+      const bStartsWith = bName.startsWith(q) || bPassport.startsWith(q);
+      
+      if (aStartsWith && !bStartsWith) return -1;
+      if (!aStartsWith && bStartsWith) return 1;
+      
+      // إذا كان كلاهما يبدأ بالبحث أو لا، نرتب حسب التاريخ (الأحدث أولاً)
+      return new Date(b.createdAt) - new Date(a.createdAt);
     });
   }, [records, query]);
 
@@ -57,10 +73,7 @@ export default function App() {
     const n = name.trim();
     const p = passport.trim();
 
-    if (!n) {
-      alert("اكتب الاسم.");
-      return;
-    }
+    // الاسم اختياري - لا نتحقق منه
     if (!p) {
       alert("اكتب رقم الجواز.");
       return;
@@ -78,7 +91,7 @@ export default function App() {
 
     const newItem = {
       id: crypto.randomUUID(),
-      name: n,
+      name: n || "بدون اسم", // إذا لم يتم إدخال اسم، نستخدم "بدون اسم"
       passport: p,
       createdAt: new Date().toISOString(),
     };
@@ -90,7 +103,8 @@ export default function App() {
 
   const startEdit = (record) => {
     setEditingId(record.id);
-    setEditName(record.name);
+    // إذا كان الاسم "بدون اسم"، نترك الحقل فارغاً لتسهيل إضافة اسم جديد
+    setEditName(record.name === "بدون اسم" ? "" : record.name);
     setEditPassport(record.passport);
   };
 
@@ -99,10 +113,7 @@ export default function App() {
     const n = editName.trim();
     const p = editPassport.trim();
 
-    if (!n) {
-      alert("اكتب الاسم.");
-      return;
-    }
+    // الاسم اختياري - لا نتحقق منه
     if (!p) {
       alert("اكتب رقم الجواز.");
       return;
@@ -122,7 +133,7 @@ export default function App() {
 
     setRecords((prev) =>
       prev.map((r) =>
-        r.id === editingId ? { ...r, name: n, passport: p } : r,
+        r.id === editingId ? { ...r, name: n || "بدون اسم", passport: p } : r,
       ),
     );
 
@@ -149,7 +160,12 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/20">
-      <Header query={query} setQuery={setQuery} total={records.length} />
+      <Header 
+        query={query} 
+        setQuery={setQuery} 
+        total={records.length}
+        searchResults={query ? filtered.slice(0, 5) : []}
+      />
       <main className="mx-auto max-w-7xl px-3 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-6 md:py-8 lg:py-12">
         <StatsBox total={records.length} filtered={filtered.length} />
         <div className="grid gap-4 sm:gap-6 md:gap-8 lg:grid-cols-3 mb-6 sm:mb-8">

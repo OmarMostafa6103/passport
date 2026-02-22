@@ -34,13 +34,14 @@ export default function AddForm({
             <label className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-semibold text-slate-700">
               <span className="text-base sm:text-lg">👤</span>
               <span>اسم الخبير</span>
+              <span className="text-xs text-slate-400 font-normal">(اختياري)</span>
             </label>
             <div className="relative">
               <input
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="w-full px-3 sm:px-4 py-2.5 sm:py-3 md:py-3.5 rounded-lg sm:rounded-xl border-2 border-slate-200 bg-slate-50 text-slate-800 placeholder-slate-400 outline-none transition-all duration-200 focus:border-primary-500 focus:bg-white focus:ring-2 sm:focus:ring-4 focus:ring-primary-500/10 text-sm sm:text-base font-medium"
-                placeholder="أدخل اسم الخبير..."
+                placeholder="أدخل اسم الخبير (اختياري) أو اتركه فارغاً..."
               />
             </div>
           </div>
@@ -71,9 +72,10 @@ export default function AddForm({
           <button
             type="submit"
             className="w-full py-2.5 sm:py-3 md:py-3.5 px-4 sm:px-6 rounded-lg sm:rounded-xl bg-gradient-to-r from-primary-600 to-primary-700 text-white text-sm sm:text-base font-semibold shadow-lg hover:shadow-xl hover:from-primary-700 hover:to-primary-800 transition-all duration-300 transform hover:-translate-y-0.5 active:scale-[0.98] animate-slide-up [animation-delay:200ms] flex items-center justify-center gap-1.5 sm:gap-2"
+            style={{ color: '#ffffff' }}
           >
             <span className="text-base sm:text-lg">💾</span>
-            <span>حفظ الخبير</span>
+            <span style={{ color: '#ffffff' }}>حفظ الخبير</span>
           </button>
 
           {/* Clear All Button */}
